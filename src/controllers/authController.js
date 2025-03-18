@@ -1,7 +1,9 @@
 import authService from "../services/authService.js";
 
-const login = (data) => {
-    return authService.login(data);
+const login = async (req, res) => {
+    const data = await authService.login(req.body);
+    res.cookie("userId", data._id);
+    res.status(200).send(data);
 }
 
 

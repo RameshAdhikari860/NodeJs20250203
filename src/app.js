@@ -5,6 +5,7 @@ import userRoute from "../src/routes/userRoute.js"
 import bodyParser from "body-parser";
 import connectDb from "./config/database.js";
 import logger from "./middlewares/logger.js";
+import authRoute from "../src/routes/authRoute.js";
 
 
 const app = express();
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use("/api/products", productRoute)
 app.use("/api/users", userRoute)
+app.use("/api/auth/login", authRoute);
 
 
 app.listen(PORT, () => {

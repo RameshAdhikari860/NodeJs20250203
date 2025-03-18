@@ -1,4 +1,5 @@
 import express from "express";
+import auth from "../middlewares/auth.js";
 import {
     getAllProducts,
     updateProduct,
@@ -11,10 +12,10 @@ import {
 const router = express.Router();
 
 router.get("/", getAllProducts)
-router.post("/", createProduct)
+router.post("/", auth, createProduct)
 router.get("/categories", getCategories)
-router.delete("/:id", deleteProduct)
-router.put("/:id", updateProduct)
+router.delete("/:id", auth, deleteProduct)
+router.put("/:id", auth, updateProduct)
 router.get("/:id", getProductById)
 
 
