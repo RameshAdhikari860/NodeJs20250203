@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use("/api/products", productRoute)
 app.use("/api/users", userRoute)
-app.use("/api/auth/login", authRoute);
+app.use("/api/auth/", authRoute);
 
 
 app.listen(PORT, () => {

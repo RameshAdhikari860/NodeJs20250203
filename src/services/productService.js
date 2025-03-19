@@ -25,4 +25,4 @@ const getCategories = async () => {
     return await Product.distinct("category");
 };
 
-export default { getCategories, createProduct, getAllProducts, getProductById, updateProduct, deleteProduct }; 
+export default { getCategories, createProduct, getAllProducts, getProductById, updateProduct, deleteProduct };
