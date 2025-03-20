@@ -18,12 +18,12 @@ const userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true,
-        // validate: {
-        //     validator: (value) => {
-        //         return emailRegex.test(value);
-        //     },
-        //     message: "Not correct format email"
-        // }
+        validate: {
+            validator: (value) => {
+                return emailRegex.test(value);
+            },
+            message: "Not correct format email"
+        }
     },
     phone: {
         type: String,
@@ -32,6 +32,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+        // validate: {
+        //     validator: (value) => {
+        //         return passwordRegex.test(value);
+        //     },
+        //     message: "password should contain at least 8 letter 1 small 1big 1num 1special"
+        // }
     },
     roles: {
         type: [String],
