@@ -16,7 +16,7 @@ const router = express.Router();
 router.get("/", getAllProducts)
 router.post("/", auth, roleBasedAuth(ROLE_MERCHANT), createProduct)
 router.get("/categories", getCategories)
-router.delete("/:id", auth, roleBasedAuth(ROLE_ADMIN), deleteProduct)
+router.delete("/:id", auth, roleBasedAuth(ROLE_MERCHANT), deleteProduct)
 router.put("/:id", auth, roleBasedAuth(ROLE_MERCHANT), updateProduct)
 router.get("/:id", getProductById)
 

@@ -11,8 +11,8 @@ const getProductById = (id) => {
     return product;
 }
 
-const createProduct = async (data) => {
-    return await Product.create(data);
+const createProduct = async (data, userId) => {
+    return await Product.create({ ...data, createdBy: userId });
 }
 const deleteProduct = async (id) => {
     const isProductAvailable = await Product.findById(id);
