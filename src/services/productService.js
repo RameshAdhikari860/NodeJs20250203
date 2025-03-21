@@ -15,11 +15,13 @@ const createProduct = async (data) => {
     return await Product.create(data);
 }
 const deleteProduct = async (id) => {
+    const isProductAvailable = await Product.findById(id);
+    if (!isProductAvailable) return false;
     const product = await Product.findByIdAndDelete(id);
     return product;
 }
 const updateProduct = async (id, data) => {
-    await Product.findByIdAndUpdate(id, data, { new: true });
+    return await Product.findByIdAndUpdate(id, data, { new: true });
 }
 const getCategories = async () => {
     return await Product.distinct("category");

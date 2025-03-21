@@ -8,4 +8,8 @@ const getAllUser = async () => {
     return await User.find();
 }
 
+const getAllCustomers = async () => {
+    return await User.find({})
+}
+
 export default { createUser, getAllUser }; 

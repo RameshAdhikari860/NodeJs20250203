@@ -1,15 +1,25 @@
 import { passwordRegex } from "../constants/regex.js";
 import { formatUserData } from "../helpers/dataFormatter.js";
 import authService from "../services/authService.js";
+import { createJWT } from "../utils/jwt.js";
 
 const login = async (req, res) => {
     try {
         const { email, phone, password } = req.body;
         if (!email && !phone) return res.status(422).send("Email or phone is required");
         if (!password) return res.status(423).send("Password required");
+
         const data = await authService.login(req.body);
-        res.cookie("userId", data._id);
-        res.status(200).send(formatUserData(data));
+        const formattedData = formatUserData(data);
+
+        const token = createJWT(formattedData);
+
+        res.cookie("authToken", token);
+
+        // console.log(token);
+
+        // res.cookie("userId", data._id);
+        res.status(200).send(formattedData);
     } catch (error) {
 
         res.status(500).send(error.message);
@@ -35,8 +45,14 @@ const register = async (req, res) => {
         }
 
         const data = await authService.register(req.body);
+        const formattedData = formatUserData(data);
 
-        res.status(200).json(formatUserData(data))
+        const token = createJWT(formattedData);
+
+        res.cookie("authToken", token);
+
+
+        res.status(200).json(formattedData)
     } catch (error) {
         if (error.name === "ValidationError") {
             return res.status(400).json({

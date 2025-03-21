@@ -7,3 +7,9 @@
 7.Schema Validation
 9.MiddleWare (Loger,auth)
 10.Logi and Register
+11.JWT , session,Cookie{
+    Generate JWT token
+    store JWT in coookie
+    Get the token from cookie
+    verify the JWT token
+}

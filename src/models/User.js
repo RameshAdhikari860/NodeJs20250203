@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import { emailRegex, passwordRegex } from "../constants/regex.js"
+import { ROLE_ADMIN, ROLE_MERCHANT, ROLE_USER } from "../constants/roles.js";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -32,6 +33,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+        min: 6
         // validate: {
         //     validator: (value) => {
         //         return passwordRegex.test(value);
@@ -41,7 +43,8 @@ const userSchema = new mongoose.Schema({
     },
     roles: {
         type: [String],
-        default: "customer"
+        default: ["USER"],
+        enum: [ROLE_USER, ROLE_ADMIN, ROLE_MERCHANT]
     }
 })
 const model = mongoose.model("User", userSchema)
