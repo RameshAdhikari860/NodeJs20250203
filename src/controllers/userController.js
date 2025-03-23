@@ -20,7 +20,7 @@ const createUser = async (req, res) => {
 }
 
 
-
+// create merchant code
 const createMerchant = async (req, res) => {
     try {
         const data = req.body;
@@ -92,6 +92,19 @@ const getAllUser = async (req, res) => {
         })
     }
 
+}
+
+const getAllCustomer = async (req, res) => {
+    try {
+        const users = await userService.getAllCustomer()
+        const formattedUser = users.map((user) => { formatUserData(user) })
+        res.status(200).json({
+            message: "all customers",
+            customers: formattedUser
+        })
+    } catch (error) {
+        res.status(500).send("Customer search error")
+    }
 }
 
 export { createUser, getAllUser, createMerchant, updateUser, deleteUser, getUserById };

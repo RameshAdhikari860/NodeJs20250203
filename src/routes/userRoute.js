@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/', createUser);
 
 router.post('/merchant', auth, roleBasedAuth(ROLE_ADMIN), createMerchant);
-router.get('/', auth, roleBasedAuth(ROLE_MERCHANT), getAllUser)
+router.get('/', auth, roleBasedAuth(ROLE_ADMIN), getAllUser)
 router.get('/:id', auth, getUserById)
 router.put('/:id', auth, roleBasedAuth(ROLE_ADMIN), updateUser);
 router.delete('/:id', auth, roleBasedAuth(ROLE_ADMIN), deleteUser)

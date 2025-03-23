@@ -60,4 +60,10 @@ const getUserById = async (id) => {
     return await User.findById(id);
 }
 
-export default { createUser, createMerchant, updateUser, deleteUser, getAllUser, getUserById }; 
+const getAllCustomer = async (params) => {
+    return await User.find({
+        roles: [ROLE_USER]
+    })
+};
+
+export default { getAllCustomer, createUser, createMerchant, updateUser, deleteUser, getAllUser, getUserById }; 
