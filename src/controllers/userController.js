@@ -97,7 +97,9 @@ const getAllUser = async (req, res) => {
 const getAllCustomer = async (req, res) => {
     try {
         const users = await userService.getAllCustomer()
+        console.log(users)
         const formattedUser = users.map((user) => { formatUserData(user) })
+        console.log(formattedUser)
         res.status(200).json({
             message: "all customers",
             customers: formattedUser
@@ -107,4 +109,4 @@ const getAllCustomer = async (req, res) => {
     }
 }
 
-export { createUser, getAllUser, createMerchant, updateUser, deleteUser, getUserById };
+export { createUser, getAllUser, createMerchant, updateUser, deleteUser, getUserById, getAllCustomer };
