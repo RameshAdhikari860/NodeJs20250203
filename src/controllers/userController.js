@@ -42,9 +42,8 @@ const updateUser = async (req, res) => {
         res.status(500).send("error in update")
     }
     res.status(200).send(user);
-
-
 }
+
 const deleteUser = async (req, res) => {
     try {
         const id = req.params.id

@@ -3,7 +3,11 @@ import productService from "../services/productService.js";
 
 const getAllProducts = async (req, res) => {
     const products = await productService.getAllProducts(req.query);
-    res.json(products);
+    res.status(200).json(products);
+}
+const getProductByUser = async (req, res) => {
+    const products = await productService.getAllProducts(req.query, req.user.id);
+    res.status(200).send(products);
 }
 const getProductById = async (req, res) => {
     try {
@@ -87,4 +91,4 @@ const getCategories = async (req, res) => {
 };
 
 
-export { getCategories, getAllProducts, createProduct, updateProduct, deleteProduct, getProductById }
+export { getCategories, getAllProducts, createProduct, updateProduct, deleteProduct, getProductById, getProductByUser }
